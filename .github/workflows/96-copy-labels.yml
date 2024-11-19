@@ -45,12 +45,4 @@ jobs:
       - name: Create labels in destination repo
         continue-on-error: true
         run: |
-          echo matrix.value.name: ${{ matrix.value.name }}
-          echo matrix.value.color: ${{ matrix.value.color }}
-          echo matrix.value.description: ${{ matrix.value.description }}
-          gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/${{github.repository}}/labels \
-             -f "name=${{ matrix.value.name }}" -f "description=${{matrix.value.description}}" -f "color=${{matrix.value.color}}"
+          gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/${{github.repository}}/labels  -f "name=${{ matrix.value.name }}" -f "description=${{matrix.value.description}}" -f "color=${{matrix.value.color}}" 
